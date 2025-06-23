@@ -1,0 +1,62 @@
+import 'package:bmiapp/main.dart';
+import 'package:flutter/material.dart';
+
+class SplashScreen extends StatefulWidget{
+  const SplashScreen({super.key});
+  @override
+  State<SplashScreen> createState()=> SplashScreenState();
+}
+
+class SplashScreenState extends State<SplashScreen>{
+  var colorsArray= [Colors.green.shade500,Colors.blue.shade500];
+  var bgColor = Colors.red.shade500;
+  int index = 0;
+  @override
+  void initState() {
+    super.initState();
+    Future.delayed(Duration(seconds:1),(){
+      setState(() {
+        bgColor=colorsArray[0];
+        index++;
+      });
+    });
+    Future.delayed(Duration(seconds: 2),(){
+      setState((){
+        bgColor=colorsArray[1];
+        index++;
+      });
+    });
+    Future.delayed(Duration(seconds: 3),(){
+      Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => MyHomePage()));
+    });
+
+  }
+  @override
+  Widget build(BuildContext context){
+    return Scaffold(
+      body: AnimatedContainer(
+        height: double.infinity,
+        width: double.infinity,
+        duration: Duration(seconds:1),
+        color: bgColor,
+        child: Center(
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Image.asset("assets/images/bmi_logo.png",
+                height: 150, width: 250, fit: BoxFit.cover),
+              RichText(text:
+                TextSpan(style: TextStyle(fontSize: 100,),
+                children: [
+                TextSpan(text:"B",style: TextStyle(color: index == 0 ? bgColor : Colors.white)),
+                TextSpan(text:"M",style: TextStyle(color: index == 1 ? bgColor : Colors.white)),
+                TextSpan(text:"I",style: TextStyle(color: index == 2 ? bgColor : Colors.white)),
+                ]
+                )),
+            ],
+          ),
+          ),
+      ),
+    );
+  }
+}
