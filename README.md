@@ -1,16 +1,12 @@
-# bmiapp
+# Body_Mass_Index_Flutter_Application
 
-A new Flutter project.
+Built a Flutter-based mobile app in Android Studio to calculate Body Mass Index (BMI) from user inputs (weight in kg, height in feet and inches), displaying results with categories like Underweight, Healthy, Overweight, or Obese, accompanied by relevant images.
 
-## Getting Started
+Created a reusable CustomTextField widget with customizable styling (colors, borders, icons) to ensure consistent numeric input fields across the app.
 
-This project is a starting point for a Flutter application.
+Designed an animated splash screen with color transitions (red, green, blue), a custom logo, and dynamic RichText styling, transitioning to the main screen after 3 seconds using Future.delayed.
 
-A few resources to get you started if this is your first Flutter project:
+Implemented input validation using try-catch to handle non-numeric inputs and enforce constraints (e.g., weight > 2), showing clear error messages in a dynamic UI with AnimatedContainer.
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
+Enhanced responsiveness with SingleChildScrollView and managed image assets (e.g., logo, category images) via pubspec.yaml for seamless integration.
 
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
