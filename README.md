@@ -1,12 +1,18 @@
 # Body_Mass_Index_Flutter_Application
 
-Built a Flutter-based mobile app in Android Studio to calculate Body Mass Index (BMI) from user inputs (weight in kg, height in feet and inches), displaying results with categories like Underweight, Healthy, Overweight, or Obese, accompanied by relevant images.
+1) First problem Solution after downloading the zip file:
+    Download ZipFile from Code button on the Master webpage. Extract the downloded zip file where ever you want to. Now, Open Android Studio and click on open project or open and select the folder that you have extracted.
+    
+    Now you have to set the Dart SDK path in the Android Studio, for that In Android Studio Go to Settings > Languages and Frameworks > Dart > Check or tick Enable Dart support for the project and then In the Dart SDK path: (Paste the Dart SDK path where you have installed     Dart SDK in you system) 
+    For Example: My Dart SDK is located in E:\SOFTWARES\InstalledSoftwares\flutter\bin\cache\dart-sdk 
 
-Created a reusable CustomTextField widget with customizable styling (colors, borders, icons) to ensure consistent numeric input fields across the app.
+    After Successfully pasted the correct path of Dart SDK, click on Apply.
 
-Designed an animated splash screen with color transitions (red, green, blue), a custom logo, and dynamic RichText styling, transitioning to the main screen after 3 seconds using Future.delayed.
+2) Second problem solution
+    Now, go to pubspec.yaml file, you can find this file in the Project Bar where all your project folders are visible 
+    
+    In pubspec.yaml, click on Pub get.
+    
+    That it, press Ctrl+Shift+F10 to run the application.
 
-Implemented input validation using try-catch to handle non-numeric inputs and enforce constraints (e.g., weight > 2), showing clear error messages in a dynamic UI with AnimatedContainer.
-
-Enhanced responsiveness with SingleChildScrollView and managed image assets (e.g., logo, category images) via pubspec.yaml for seamless integration.
 
