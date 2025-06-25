@@ -51,14 +51,22 @@ class MyHomePageState extends State<MyHomePage> {
   }
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        backgroundColor: Colors.indigoAccent,
-        title: Text("BMI",style: TextStyle(fontWeight: FontWeight.bold,fontSize: 35, color: Colors.white)),
-        centerTitle: true,
-      ),
-      body: SafeArea(
-        child: AnimatedContainer(duration: Duration(seconds: 1),
+    return SafeArea(
+      child: Scaffold(
+        appBar: AppBar(
+          backgroundColor: Colors.indigoAccent,
+          title: Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children:[
+            Image.asset("assets/images/bmi_logo.png",
+              height: 50, width: 50,
+              fit: BoxFit.scaleDown),
+            SizedBox(width: 8,),
+            Text("BODY MASS INDEX",style: TextStyle(fontWeight: FontWeight.bold,fontSize: 35, color: Colors.white)),
+          ],
+        ),
+        ),
+        body: AnimatedContainer(duration: Duration(seconds: 1),
           color: bgColor,
           child: Center(
             child: Container(
@@ -175,6 +183,7 @@ class MyHomePageState extends State<MyHomePage> {
                                   ),
                               ),
                               child: FloatingActionButton(
+                                heroTag: null,
                                 shape: RoundedRectangleBorder(
                                   borderRadius: BorderRadius.circular(20),
                                 ),
@@ -188,13 +197,13 @@ class MyHomePageState extends State<MyHomePage> {
                                     var givenFoots = footHeightCont.text.toString().trim();
                                     var givenInches = inchHeightCont.text.toString().trim();
                                     var givenGender = genderGroupValue.toString().trim();
-        
+
                                     if(givenWeight.isNotEmpty && givenFoots.isNotEmpty && givenInches.isNotEmpty){
                                       try{
                                       var weight = int.parse(givenWeight);
                                       var foots = int.parse(givenFoots);
                                       var inches = int.parse(givenInches);
-        
+
                                       if(weight <= 2 || foots<=2 || inches<0){
                                         setState(() {
                                           bmiResult ="Enter Correct Values: \nWeight > 2 \nFoot > 2  \nInches >= 0";
@@ -322,6 +331,7 @@ class MyHomePageState extends State<MyHomePage> {
                                 ),
                               ),
                               child: FloatingActionButton(
+                                  heroTag: null,
                                   foregroundColor: Colors.white,
                                   elevation: 0,
                                   backgroundColor: Colors.transparent,
@@ -381,8 +391,8 @@ class MyHomePageState extends State<MyHomePage> {
                 ),
             ),
           ),
-        ),
-      )
+        )
+      ),
     );
   }
 }
