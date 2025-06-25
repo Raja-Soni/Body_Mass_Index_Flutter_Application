@@ -168,10 +168,10 @@ class MyHomePageState extends State<MyHomePage> {
                                   borderRadius: BorderRadius.circular(20),
                                   gradient: RadialGradient(
                                       colors: [
-                                        Color(0xff3074f8),
+                                        Color(0xff3575f8),
                                         Color(0xff15278c),],
                                       center: Alignment.center,
-                                      radius: 1.8
+                                      radius: 1.5
                                   ),
                               ),
                               child: FloatingActionButton(
