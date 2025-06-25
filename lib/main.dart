@@ -16,7 +16,7 @@ class MyApp extends StatelessWidget {
       title: 'BMI Application',
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
-        primarySwatch: Colors.indigo,
+        primarySwatch: Colors.blue,
       ),
       home: SplashScreen(),
     );
@@ -54,7 +54,7 @@ class MyHomePageState extends State<MyHomePage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: Theme.of(context).colorScheme.primary,
+        backgroundColor: Colors.indigoAccent,
         title: Text("BMI",style: TextStyle(fontWeight: FontWeight.w500,fontSize: 35, color: Colors.white)),
         centerTitle: true,
       ),
@@ -67,11 +67,11 @@ class MyHomePageState extends State<MyHomePage> {
               decoration: BoxDecoration(
                 gradient: RadialGradient(
                     colors: [
-                      Color(0xff4259d1),
-                      Color(0xff172b8e),
+                      Color(0xff3074f8),
+                      Color(0xff2b3483),
                     ],
                   focal: Alignment.center,
-                  radius: 0.4,
+                  radius:1,
                   tileMode: TileMode.mirror
                 ),
                 borderRadius: BorderRadius.all(Radius.circular(15)),
@@ -101,7 +101,7 @@ class MyHomePageState extends State<MyHomePage> {
                           TextSpan(children:[
                             TextSpan(text: "B", style: TextStyle(fontWeight: FontWeight.w600,fontSize: 35, color: Colors.red)),
                             TextSpan(text: "M", style: TextStyle(fontWeight: FontWeight.w600,fontSize: 30, color: Colors.green)),
-                            TextSpan(text: "I", style: TextStyle(fontWeight: FontWeight.w600,fontSize: 25, color: Colors.blue.shade800)),
+                            TextSpan(text: "I", style: TextStyle(fontWeight: FontWeight.w600,fontSize: 35, color: Colors.blue.shade800)),
                             TextSpan(text: " Application", style: TextStyle(fontWeight: FontWeight.w600, color: bgColor, fontSize: 35))
                           ])
                           ),
@@ -157,153 +157,199 @@ class MyHomePageState extends State<MyHomePage> {
                       SizedBox(height: 10,),
                       SizedBox(
                         height: 40, width: 100,
-                        child: FloatingActionButton(
+                        child: Material(
                           shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(20),
+                              borderRadius: BorderRadius.circular(20),
+                              side: BorderSide(
+                                  color: Colors.white,
+                                  width: 1
+                              )
                           ),
-                          focusColor: Colors.green,
-                          foregroundColor: Colors.white,
-                          backgroundColor: Colors.indigo.shade700,
-                          splashColor: Colors.green.shade800,
-                            onPressed: (){
-                              var givenWeight = weightCont.text.toString().trim();
-                              var givenFoots = footHeightCont.text.toString().trim();
-                              var givenInches = inchHeightCont.text.toString().trim();
-                              var givenGender = genderGroupValue.toString().trim();
-
-                              if(givenWeight.isNotEmpty && givenFoots.isNotEmpty && givenInches.isNotEmpty){
-                                try{
-                                var weight = int.parse(givenWeight);
-                                var foots = int.parse(givenFoots);
-                                var inches = int.parse(givenInches);
-
-                                if(weight <= 2 || foots<=2 || inches<0){
-                                  setState(() {
-                                    bmiResult ="Enter Correct Values: \nWeight > 2 \nFoot > 2  \nInches >= 0";
-                                    bgColor = Colors.yellow;
-                                    chngColor=Colors.black;
-                                    imageIndex = 0;
-                                    cautionBGColor = Colors.yellow;
-                                  });
-                                }
-                                else if(givenGender.isEmpty){
-                                  setState((){
-                                    bmiResult ="Please Select Your Gender!!!";
-                                    bgColor = Colors.yellow;
-                                    chngColor=Colors.black;
-                                    imageIndex = 0;
-                                    cautionBGColor = Colors.yellow;
-                                  });
-                                }
-                                else {
-                                  var totalInches = (foots * 12) + inches;
-                                  var totalCM = totalInches * 2.54;
-                                  var totalMeters = totalCM / 100;
-                                  var bmi = weight / (totalMeters * totalMeters);
-                                  setState(() {
-                                    if (bmi <= 18.5) {
-                                      bgColor = Colors.red;
-                                      chngColor = bgColor;
-                                      cautionBGColor = Colors.indigo;
-                                      if(genderGroupValue=="male"){
-                                      imageIndex = 1;
-                                      }
-                                      else{
-                                        imageIndex = 5;
-                                      }
-                                      bmiResult =
-                                      "Your BMI is: ${bmi.toStringAsFixed(2)} \nYou are Underweight!!!";
+                          child: Ink(
+                            decoration: BoxDecoration(
+                                borderRadius: BorderRadius.circular(20),
+                                gradient: LinearGradient(
+                                  colors: [
+                                    Color(0xff3074f8),
+                                    Color(0xff15278c),],
+                                  begin: Alignment.centerLeft,
+                                  end: Alignment.centerRight,
+                              )
+                            ),
+                            child: FloatingActionButton(
+                              shape: RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(20),
+                              ),
+                              focusColor: Colors.green,
+                              foregroundColor: Colors.white,
+                              backgroundColor: Colors.transparent,
+                              elevation: 0,
+                              splashColor: Colors.green.shade800,
+                                onPressed: (){
+                                  var givenWeight = weightCont.text.toString().trim();
+                                  var givenFoots = footHeightCont.text.toString().trim();
+                                  var givenInches = inchHeightCont.text.toString().trim();
+                                  var givenGender = genderGroupValue.toString().trim();
+                          
+                                  if(givenWeight.isNotEmpty && givenFoots.isNotEmpty && givenInches.isNotEmpty){
+                                    try{
+                                    var weight = int.parse(givenWeight);
+                                    var foots = int.parse(givenFoots);
+                                    var inches = int.parse(givenInches);
+                          
+                                    if(weight <= 2 || foots<=2 || inches<0){
+                                      setState(() {
+                                        bmiResult ="Enter Correct Values: \nWeight > 2 \nFoot > 2  \nInches >= 0";
+                                        bgColor = Colors.yellow;
+                                        chngColor=Colors.black;
+                                        imageIndex = 0;
+                                        cautionBGColor = Colors.yellow;
+                                      });
                                     }
-                                    else if (bmi >= 25 && bmi <= 29.9) {
-                                      bgColor = Colors.orange;
-                                      chngColor = bgColor;
-                                      if(genderGroupValue=="male"){
-                                        imageIndex = 3;
-                                      }
-                                      else{
-                                        imageIndex = 7;
-                                      }
-                                      cautionBGColor = Colors.indigo;
-                                      bmiResult =
-                                      "Your BMI is: ${bmi.toStringAsFixed(2)} \nYou are Overweight!!!";
-                                    }
-                                    else if (bmi > 30) {
-                                      bgColor = Colors.red;
-                                      chngColor = bgColor;
-                                      cautionBGColor = Colors.indigo;
-                                      if(genderGroupValue=="male"){
-                                        imageIndex = 4;
-                                      }
-                                      else{
-                                        imageIndex = 8;
-                                      }
-                                      bmiResult =
-                                      "Your BMI is: ${bmi.toStringAsFixed(2)} \nYou are Obese!!!";
+                                    else if(givenGender.isEmpty){
+                                      setState((){
+                                        bmiResult ="Please Select Your Gender!!!";
+                                        bgColor = Colors.yellow;
+                                        chngColor=Colors.black;
+                                        imageIndex = 0;
+                                        cautionBGColor = Colors.yellow;
+                                      });
                                     }
                                     else {
-                                      bgColor = Colors.green;
-                                      chngColor = bgColor;
-                                      cautionBGColor = Colors.indigo;
-                                      if(genderGroupValue=="male"){
-                                        imageIndex = 2;
-                                      }
-                                      else{
-                                        imageIndex = 6;
-                                      }
-                                      bmiResult =
-                                      "Your BMI is: ${bmi.toStringAsFixed(2)}  \nYou are Healthy...";
+                                      var totalInches = (foots * 12) + inches;
+                                      var totalCM = totalInches * 2.54;
+                                      var totalMeters = totalCM / 100;
+                                      var bmi = weight / (totalMeters * totalMeters);
+                                      setState(() {
+                                        if (bmi <= 18.5) {
+                                          bgColor = Colors.red;
+                                          chngColor = bgColor;
+                                          cautionBGColor = Colors.indigo;
+                                          if(genderGroupValue=="male"){
+                                          imageIndex = 1;
+                                          }
+                                          else{
+                                            imageIndex = 5;
+                                          }
+                                          bmiResult =
+                                          "Your BMI is: ${bmi.toStringAsFixed(2)} \nYou are Underweight!!!";
+                                        }
+                                        else if (bmi >= 25 && bmi <= 29.9) {
+                                          bgColor = Colors.orange;
+                                          chngColor = bgColor;
+                                          if(genderGroupValue=="male"){
+                                            imageIndex = 3;
+                                          }
+                                          else{
+                                            imageIndex = 7;
+                                          }
+                                          cautionBGColor = Colors.indigo;
+                                          bmiResult =
+                                          "Your BMI is: ${bmi.toStringAsFixed(2)} \nYou are Overweight!!!";
+                                        }
+                                        else if (bmi > 30) {
+                                          bgColor = Colors.red;
+                                          chngColor = bgColor;
+                                          cautionBGColor = Colors.indigo;
+                                          if(genderGroupValue=="male"){
+                                            imageIndex = 4;
+                                          }
+                                          else{
+                                            imageIndex = 8;
+                                          }
+                                          bmiResult =
+                                          "Your BMI is: ${bmi.toStringAsFixed(2)} \nYou are Obese!!!";
+                                        }
+                                        else {
+                                          bgColor = Colors.green;
+                                          chngColor = bgColor;
+                                          cautionBGColor = Colors.indigo;
+                                          if(genderGroupValue=="male"){
+                                            imageIndex = 2;
+                                          }
+                                          else{
+                                            imageIndex = 6;
+                                          }
+                                          bmiResult =
+                                          "Your BMI is: ${bmi.toStringAsFixed(2)}  \nYou are Healthy...";
+                                        }
+                                      });
                                     }
-                                  });
-                                }
-                                }
-                                catch(e){
-                                  setState(() {
-                                    bmiResult ="Please Fill Number Only in all the Fields";
-                                    bgColor = Colors.yellow;
-                                    chngColor=Colors.black;
-                                    cautionBGColor = Colors.yellow;
-                                    imageIndex = 0;
-                                  });
-                                }
-                              }
-                              else{
-                                setState(() {
-                                  bmiResult ="Please Fill All the Fields";
-                                  chngColor=Colors.black;
-                                  cautionBGColor = Colors.yellow;
-                                  bgColor = cautionBGColor;
-                                  imageIndex = 0;
-                                });
-                              }
-                              }, child: Text("Calculate")
+                                    }
+                                    catch(e){
+                                      setState(() {
+                                        bmiResult ="Please Fill Number Only in all the Fields";
+                                        bgColor = Colors.yellow;
+                                        chngColor=Colors.black;
+                                        cautionBGColor = Colors.yellow;
+                                        imageIndex = 0;
+                                      });
+                                    }
+                                  }
+                                  else{
+                                    setState(() {
+                                      bmiResult ="Please Fill All the Fields";
+                                      chngColor=Colors.black;
+                                      cautionBGColor = Colors.yellow;
+                                      bgColor = cautionBGColor;
+                                      imageIndex = 0;
+                                    });
+                                  }
+                                  }, child: Text("Calculate")
+                            ),
+                          ),
                         ),
                       ),
                       SizedBox(height: 15,),
                       SizedBox(
                         height: 40,
                         width: 100,
-                        child: FloatingActionButton(
-                            foregroundColor: Colors.white,
-                            backgroundColor: Colors.indigo.shade700,
-                            focusColor: Colors.green,
-                            splashColor: Colors.green.shade800,
-                            shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(20)
+                        child: Material(
+                          shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(20),
+                            side: BorderSide(
+                              color: Colors.white,
+                              width: 1
+                            )
                           ),
-                          onPressed: (){
-                            setState(() {
-                              weightCont.clear();
-                              footHeightCont.clear();
-                              inchHeightCont.clear();
-                              bmiResult="";
-                              imageIndex = 0;
-                              bgColor = Colors.indigo.shade500;
-                              chngColor=Colors.white;
-                              cautionBGColor=bgColor;
-                              genderGroupValue="";
-                            });
-
-                            }, child: Text("Reset")),
+                          child: Ink(
+                            decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(20),
+                              gradient: LinearGradient(
+                                colors: [
+                                  Color(0xff3074f8),
+                                  Color(0xff15278c),],
+                                begin: Alignment.centerLeft,
+                                end: Alignment.centerRight,
+                              ),
+                            ),
+                            child: FloatingActionButton(
+                                foregroundColor: Colors.white,
+                                // backgroundColor: Colors.indigo.shade700,
+                                elevation: 0,
+                                backgroundColor: Colors.transparent,
+                                focusColor: Colors.green,
+                                splashColor: Colors.green.shade800,
+                                shape: RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(20)
+                              ),
+                              onPressed: (){
+                                setState(() {
+                                  weightCont.clear();
+                                  footHeightCont.clear();
+                                  inchHeightCont.clear();
+                                  bmiResult="";
+                                  imageIndex = 0;
+                                  bgColor = Colors.indigo.shade500;
+                                  chngColor=Colors.white;
+                                  cautionBGColor=bgColor;
+                                  genderGroupValue="";
+                                });
+                                },
+                                child: Text("Reset")
+                            ),
+                          ),
+                        ),
                       ),
                       SizedBox(height: 10,),
                       Container(
