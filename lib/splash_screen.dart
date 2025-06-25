@@ -44,13 +44,13 @@ class SplashScreenState extends State<SplashScreen>{
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               Image.asset("assets/images/bmi_logo.png",
-                height: 150, width: 250, fit: BoxFit.cover),
+                height: 150, width: 250, fit: BoxFit.fill),
               RichText(text:
                 TextSpan(style: TextStyle(fontSize: 100,),
                 children: [
-                TextSpan(text:"B",style: TextStyle(color: index == 0 ? bgColor : Colors.white)),
-                TextSpan(text:"M",style: TextStyle(color: index == 1 ? bgColor : Colors.white)),
-                TextSpan(text:"I",style: TextStyle(color: index == 2 ? bgColor : Colors.white)),
+                TextSpan(text:"B",style: TextStyle(color: index == 0 ? Colors.red.shade700 : Colors.white)),
+                TextSpan(text:"M",style: TextStyle(color: index == 1 ? Colors.green.shade700: Colors.white)),
+                TextSpan(text:"I",style: TextStyle(color: index == 2 ? Colors.blue.shade700 : Colors.white)),
                 ]
                 )),
             ],

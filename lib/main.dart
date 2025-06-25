@@ -33,12 +33,15 @@ class MyHomePageState extends State<MyHomePage> {
   var footHeightCont = TextEditingController();
   var inchHeightCont= TextEditingController();
   var weightCont= TextEditingController();
-  var bmiResult="";
+  var bmiResult='';
   Color bgColor = Colors.indigo.shade500;
   Color chngColor = Colors.white;
   Color cautionBGColor = Colors.indigo.shade500;
-  var imgs = ["","assets/images/under_weight.png","assets/images/healthy.png","assets/images/over_weight.png","assets/images/obese.png"];
+  var imgs = ["","assets/images/under_weight_male.png","assets/images/healthy_male.png","assets/images/over_weight_male.png","assets/images/obese_male.png"
+    ,"assets/images/under_weight_female.png","assets/images/healthy_female.png","assets/images/over_weight_female.png","assets/images/obese_female.png"];
   var imageIndex=0;
+  var genderGroupValue="";
+  var gender=['male','female'];
 
   @override
   void dispose() {
@@ -62,15 +65,23 @@ class MyHomePageState extends State<MyHomePage> {
               width: 350,
               height: 700,
               decoration: BoxDecoration(
-                color: Colors.indigo.shade500,
-                borderRadius: BorderRadius.all(Radius.circular(20)),
+                gradient: RadialGradient(
+                    colors: [
+                      Color(0xff4259d1),
+                      Color(0xff172b8e),
+                    ],
+                  focal: Alignment.center,
+                  radius: 0.4,
+                  tileMode: TileMode.mirror
+                ),
+                borderRadius: BorderRadius.all(Radius.circular(15)),
                 border: Border.all(
-                  width: 5,
+                  width: 4,
                   color: Colors.white,
                 )
               ),
               child: Padding(
-                padding: const EdgeInsets.only(top:30,left:15,right:15),
+                padding: const EdgeInsets.all(20.0),
                 child: SingleChildScrollView(
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.spaceEvenly,
@@ -116,6 +127,34 @@ class MyHomePageState extends State<MyHomePage> {
                         icon: Icon(Icons.height),
                         iconColor: Colors.blue,),
                       SizedBox(height: 10,),
+                      Row(
+                          children: [
+                            Radio(
+                                fillColor: WidgetStateProperty.all(Colors.white),
+                                focusColor: Colors.green,
+                                overlayColor: WidgetStatePropertyAll(Colors.green),
+                                value: gender[0],
+                                groupValue: genderGroupValue,
+                                onChanged:(value){
+                                  genderGroupValue=value.toString();
+                                  setState((){});
+                          }),
+                            Text("Male", style: TextStyle(fontWeight: FontWeight.bold,fontSize: 20, color: Colors.white)),
+                            SizedBox(width: 25,),
+                            Radio(
+                              fillColor: WidgetStatePropertyAll(Colors.white),
+                              focusColor: Colors.green,
+                              overlayColor: WidgetStatePropertyAll(Colors.green),
+                              value: gender[1],
+                              groupValue: genderGroupValue,
+                              onChanged: (value){
+                                genderGroupValue=value.toString();
+                                setState((){});
+                              },),
+                            Text("Female", style: TextStyle(fontWeight: FontWeight.bold,fontSize: 20, color: Colors.white)),
+                          ]
+                      ),
+                      SizedBox(height: 10,),
                       SizedBox(
                         height: 40, width: 100,
                         child: FloatingActionButton(
@@ -125,11 +164,12 @@ class MyHomePageState extends State<MyHomePage> {
                           focusColor: Colors.green,
                           foregroundColor: Colors.white,
                           backgroundColor: Colors.indigo.shade700,
-                          splashColor: Colors.blue.shade800,
+                          splashColor: Colors.green.shade800,
                             onPressed: (){
                               var givenWeight = weightCont.text.toString().trim();
                               var givenFoots = footHeightCont.text.toString().trim();
                               var givenInches = inchHeightCont.text.toString().trim();
+                              var givenGender = genderGroupValue.toString().trim();
 
                               if(givenWeight.isNotEmpty && givenFoots.isNotEmpty && givenInches.isNotEmpty){
                                 try{
@@ -146,24 +186,43 @@ class MyHomePageState extends State<MyHomePage> {
                                     cautionBGColor = Colors.yellow;
                                   });
                                 }
+                                else if(givenGender.isEmpty){
+                                  setState((){
+                                    bmiResult ="Please Select Your Gender!!!";
+                                    bgColor = Colors.yellow;
+                                    chngColor=Colors.black;
+                                    imageIndex = 0;
+                                    cautionBGColor = Colors.yellow;
+                                  });
+                                }
                                 else {
                                   var totalInches = (foots * 12) + inches;
                                   var totalCM = totalInches * 2.54;
                                   var totalMeters = totalCM / 100;
                                   var bmi = weight / (totalMeters * totalMeters);
                                   setState(() {
-                                    if (bmi < 18.5) {
+                                    if (bmi <= 18.5) {
                                       bgColor = Colors.red;
                                       chngColor = bgColor;
                                       cautionBGColor = Colors.indigo;
+                                      if(genderGroupValue=="male"){
                                       imageIndex = 1;
+                                      }
+                                      else{
+                                        imageIndex = 5;
+                                      }
                                       bmiResult =
                                       "Your BMI is: ${bmi.toStringAsFixed(2)} \nYou are Underweight!!!";
                                     }
                                     else if (bmi >= 25 && bmi <= 29.9) {
                                       bgColor = Colors.orange;
                                       chngColor = bgColor;
-                                      imageIndex = 3;
+                                      if(genderGroupValue=="male"){
+                                        imageIndex = 3;
+                                      }
+                                      else{
+                                        imageIndex = 7;
+                                      }
                                       cautionBGColor = Colors.indigo;
                                       bmiResult =
                                       "Your BMI is: ${bmi.toStringAsFixed(2)} \nYou are Overweight!!!";
@@ -172,7 +231,12 @@ class MyHomePageState extends State<MyHomePage> {
                                       bgColor = Colors.red;
                                       chngColor = bgColor;
                                       cautionBGColor = Colors.indigo;
-                                      imageIndex = 4;
+                                      if(genderGroupValue=="male"){
+                                        imageIndex = 4;
+                                      }
+                                      else{
+                                        imageIndex = 8;
+                                      }
                                       bmiResult =
                                       "Your BMI is: ${bmi.toStringAsFixed(2)} \nYou are Obese!!!";
                                     }
@@ -180,7 +244,12 @@ class MyHomePageState extends State<MyHomePage> {
                                       bgColor = Colors.green;
                                       chngColor = bgColor;
                                       cautionBGColor = Colors.indigo;
-                                      imageIndex = 2;
+                                      if(genderGroupValue=="male"){
+                                        imageIndex = 2;
+                                      }
+                                      else{
+                                        imageIndex = 6;
+                                      }
                                       bmiResult =
                                       "Your BMI is: ${bmi.toStringAsFixed(2)}  \nYou are Healthy...";
                                     }
@@ -217,7 +286,7 @@ class MyHomePageState extends State<MyHomePage> {
                             foregroundColor: Colors.white,
                             backgroundColor: Colors.indigo.shade700,
                             focusColor: Colors.green,
-                            splashColor: Colors.blue.shade800,
+                            splashColor: Colors.green.shade800,
                             shape: RoundedRectangleBorder(
                             borderRadius: BorderRadius.circular(20)
                           ),
@@ -231,6 +300,7 @@ class MyHomePageState extends State<MyHomePage> {
                               bgColor = Colors.indigo.shade500;
                               chngColor=Colors.white;
                               cautionBGColor=bgColor;
+                              genderGroupValue="";
                             });
 
                             }, child: Text("Reset")),
@@ -256,6 +326,7 @@ class MyHomePageState extends State<MyHomePage> {
                                     fontWeight: FontWeight.w600)),
                           ),
                         ),
+                      SizedBox(height: 10,),
                       imageIndex != 0 ? Image.asset(
                         imgs[imageIndex],
                         height: 180,
