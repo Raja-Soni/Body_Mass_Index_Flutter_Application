@@ -171,7 +171,7 @@ class MyHomePageState extends State<MyHomePage> {
                                         Color(0xff3074f8),
                                         Color(0xff15278c),],
                                       center: Alignment.center,
-                                      radius: 1.3
+                                      radius: 1.8
                                   ),
                               ),
                               child: FloatingActionButton(
@@ -323,7 +323,6 @@ class MyHomePageState extends State<MyHomePage> {
                               ),
                               child: FloatingActionButton(
                                   foregroundColor: Colors.white,
-                                  // backgroundColor: Colors.indigo.shade700,
                                   elevation: 0,
                                   backgroundColor: Colors.transparent,
                                   focusColor: Colors.green,
