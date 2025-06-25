@@ -33,7 +33,7 @@ class MyHomePageState extends State<MyHomePage> {
   var inchHeightCont= TextEditingController();
   var weightCont= TextEditingController();
   var bmiResult='';
-  Color bgColor = Colors.indigo.shade400;
+  Color bgColor = Colors.indigo.shade500;
   Color chngColor = Colors.white;
   Color cautionBGColor = Colors.indigo.shade500;
   var imgs = ["","assets/images/under_weight_male.png","assets/images/healthy_male.png","assets/images/over_weight_male.png","assets/images/obese_male.png"
