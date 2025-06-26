@@ -17,6 +17,7 @@ class CustomTextField extends StatelessWidget {
   final Icon icon;
   final Color iconColor;
 
+
   const CustomTextField(
   {super.key,
     required this.control,
@@ -47,7 +48,11 @@ class CustomTextField extends StatelessWidget {
           prefixIcon: icon,
           prefixIconColor: iconColor,
           labelText: hintText,
-          labelStyle: TextStyle(color: hintTextColor, fontSize: hintTextSize),
+          labelStyle: TextStyle(
+              color: hintTextColor,
+              fontSize: hintTextSize,
+            )
+          ,
           focusedBorder: OutlineInputBorder(
             borderSide: BorderSide(
               width: focusedBorderWidth,

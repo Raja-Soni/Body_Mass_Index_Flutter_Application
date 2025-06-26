@@ -62,7 +62,13 @@ class MyHomePageState extends State<MyHomePage> {
               height: 50, width: 50,
               fit: BoxFit.scaleDown),
             SizedBox(width: 8,),
-            Text("BODY MASS INDEX",style: TextStyle(fontWeight: FontWeight.bold,fontSize: 35, color: Colors.white)),
+            Text("BODY MASS INDEX",
+                style: TextStyle(
+                    fontWeight: FontWeight.bold,
+                    fontSize: 30,
+                    color: Colors.white,
+                  fontFamily: 'titleFontType'
+                )),
           ],
         ),
         ),
@@ -104,11 +110,13 @@ class MyHomePageState extends State<MyHomePage> {
                           child: Padding(
                             padding: const EdgeInsets.all(10),
                             child: RichText(text:
-                            TextSpan(children:[
-                              TextSpan(text: "B", style: TextStyle(fontWeight: FontWeight.w600,fontSize: 35, color: Colors.red)),
-                              TextSpan(text: "M", style: TextStyle(fontWeight: FontWeight.w600,fontSize: 30, color: Colors.green)),
-                              TextSpan(text: "I", style: TextStyle(fontWeight: FontWeight.w600,fontSize: 35, color: Colors.blue.shade800)),
-                              TextSpan(text: " Application", style: TextStyle(fontWeight: FontWeight.w600, color: bgColor, fontSize: 35))
+                            TextSpan(
+                                style: TextStyle(fontFamily: 'titleFontType',fontWeight: FontWeight.w600,fontSize: 30,),
+                                children:[
+                              TextSpan(text: "B", style: TextStyle(color: Colors.red)),
+                              TextSpan(text: "M", style: TextStyle(color: Colors.green)),
+                              TextSpan(text: "I ", style: TextStyle(color: Colors.blue.shade800)),
+                              TextSpan(text: "Application", style: TextStyle( color: bgColor)),
                             ])
                             ),
                           ),
@@ -145,7 +153,7 @@ class MyHomePageState extends State<MyHomePage> {
                                       genderGroupValue=value.toString();
                                     });
                             }),
-                              Text("Male", style: TextStyle(fontWeight: FontWeight.bold,fontSize: 20, color: Colors.white)),
+                              Text("Male", style: TextStyle(fontSize: 20, color: Colors.white)),
                               SizedBox(width: 20,),
                               Radio(
                                 fillColor: WidgetStatePropertyAll(Colors.white),
@@ -157,7 +165,7 @@ class MyHomePageState extends State<MyHomePage> {
                                     genderGroupValue=value.toString();
                                   });
                                 },),
-                              Text("Female", style: TextStyle(fontWeight: FontWeight.bold,fontSize: 20, color: Colors.white)),
+                              Text("Female", style: TextStyle(fontSize: 20, color: Colors.white)),
                             ]
                         ),
                         SizedBox(height: 10,),
@@ -302,7 +310,10 @@ class MyHomePageState extends State<MyHomePage> {
                                         imageIndex = 0;
                                       });
                                     }
-                                    }, child: Text("Calculate")
+                                    },
+                                  child: Text("Calculate", style:
+                                  TextStyle(fontWeight: FontWeight.bold),
+                              )
                               ),
                             ),
                           ),
@@ -353,7 +364,8 @@ class MyHomePageState extends State<MyHomePage> {
                                     genderGroupValue="";
                                   });
                                   },
-                                  child: Text("Reset")
+                                  child: Text("Reset", style: TextStyle(fontWeight: FontWeight.bold)
+                                  )
                               ),
                             ),
                           ),
