@@ -59,7 +59,7 @@ class MyHomePageState extends State<MyHomePage> {
             mainAxisAlignment: MainAxisAlignment.center,
             children:[
             Image.asset("assets/images/bmi_logo.png",
-              height: 50, width: 50,
+              height: 50, width: 70,
               fit: BoxFit.scaleDown),
             SizedBox(width: 8,),
             Text("BODY MASS INDEX",
@@ -195,11 +195,11 @@ class MyHomePageState extends State<MyHomePage> {
                                 shape: RoundedRectangleBorder(
                                   borderRadius: BorderRadius.circular(20),
                                 ),
-                                focusColor: Colors.green,
+                                focusColor: Colors.green.shade800,
                                 foregroundColor: Colors.white,
                                 backgroundColor: Colors.transparent,
                                 elevation: 0,
-                                splashColor: Colors.green.shade800,
+                                splashColor: Colors.green,
                                   onPressed: (){
                                     var givenWeight = weightCont.text.toString().trim();
                                     var givenFoots = footHeightCont.text.toString().trim();
@@ -346,8 +346,8 @@ class MyHomePageState extends State<MyHomePage> {
                                   foregroundColor: Colors.white,
                                   elevation: 0,
                                   backgroundColor: Colors.transparent,
-                                  focusColor: Colors.green,
-                                  splashColor: Colors.green.shade800,
+                                  focusColor: Colors.green.shade800,
+                                  splashColor: Colors.green,
                                   shape: RoundedRectangleBorder(
                                   borderRadius: BorderRadius.circular(20)
                                 ),

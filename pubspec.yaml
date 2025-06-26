@@ -78,6 +78,6 @@ flutter:
       fonts:
         - asset: assets/fonts/NotoSerif-VariableFont_wdth,wght.ttf
 
-  #
+
   # For details regarding fonts from package dependencies,
   # see https://flutter.dev/to/font-from-package
