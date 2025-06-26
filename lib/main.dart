@@ -79,12 +79,15 @@ class MyHomePageState extends State<MyHomePage> {
                 width: 350,
                 height: 700,
                 decoration: BoxDecoration(
-                  gradient: RadialGradient(
+                  gradient: LinearGradient(
                       colors: [
+                        Color(0xff2b3483),
                         Color(0xff3074f8),
                         Color(0xff2b3483),
                       ],
-                    radius:1,
+                    // radius:1,
+                    begin:Alignment.topCenter,
+                    end: Alignment.bottomCenter,
                   ),
                   borderRadius: BorderRadius.all(Radius.circular(15)),
                   border: Border.all(
@@ -111,6 +114,7 @@ class MyHomePageState extends State<MyHomePage> {
                             padding: const EdgeInsets.all(10),
                             child: RichText(text:
                             TextSpan(
+                              //Default Values for TextStyle
                                 style: TextStyle(fontFamily: 'titleFontType',fontWeight: FontWeight.w600,fontSize: 30,),
                                 children:[
                               TextSpan(text: "B", style: TextStyle(color: Colors.red)),
@@ -141,32 +145,37 @@ class MyHomePageState extends State<MyHomePage> {
                           icon: Icon(Icons.height),
                           iconColor: Colors.blue,),
                         SizedBox(height: 10,),
-                        Row(
-                            children: [
-                              Radio(
+                        Padding(
+                          padding:EdgeInsets.all(4),
+                          child: Row(
+                              children: [
+                                Radio(
+                                    fillColor: WidgetStatePropertyAll(Colors.white),
+                                    overlayColor: WidgetStatePropertyAll(Colors.green),
+                                    value: gender[0],
+                                    groupValue: genderGroupValue,
+                                    onChanged:(value){
+                                      setState((){
+                                        // gender[0].toString(); value will be assigned to genderGroupValue which was initially empty string
+                                        genderGroupValue=value.toString();
+                                      });
+                              }),
+                                Text("Male", style: TextStyle(fontSize: 20, color: Colors.white)),
+                                SizedBox(width: 20,),
+                                Radio(
                                   fillColor: WidgetStatePropertyAll(Colors.white),
                                   overlayColor: WidgetStatePropertyAll(Colors.green),
-                                  value: gender[0],
+                                  value: gender[1],
                                   groupValue: genderGroupValue,
-                                  onChanged:(value){
+                                  onChanged: (value){
                                     setState((){
+                                      // gender[1].toString(); value will be assigned to genderGroupValue which was initially empty string
                                       genderGroupValue=value.toString();
                                     });
-                            }),
-                              Text("Male", style: TextStyle(fontSize: 20, color: Colors.white)),
-                              SizedBox(width: 20,),
-                              Radio(
-                                fillColor: WidgetStatePropertyAll(Colors.white),
-                                overlayColor: WidgetStatePropertyAll(Colors.green),
-                                value: gender[1],
-                                groupValue: genderGroupValue,
-                                onChanged: (value){
-                                  setState((){
-                                    genderGroupValue=value.toString();
-                                  });
-                                },),
-                              Text("Female", style: TextStyle(fontSize: 20, color: Colors.white)),
-                            ]
+                                  },),
+                                Text("Female", style: TextStyle(fontSize: 20, color: Colors.white)),
+                              ]
+                          ),
                         ),
                         SizedBox(height: 10,),
                         SizedBox(
@@ -205,13 +214,13 @@ class MyHomePageState extends State<MyHomePage> {
                                     var givenFoots = footHeightCont.text.toString().trim();
                                     var givenInches = inchHeightCont.text.toString().trim();
                                     var givenGender = genderGroupValue.toString().trim();
-
+      
                                     if(givenWeight.isNotEmpty && givenFoots.isNotEmpty && givenInches.isNotEmpty){
                                       try{
                                       var weight = int.parse(givenWeight);
                                       var foots = int.parse(givenFoots);
                                       var inches = int.parse(givenInches);
-
+      
                                       if(weight <= 2 || foots<=2 || inches<0){
                                         setState(() {
                                           bmiResult ="Enter Correct Values: \nWeight > 2 \nFoot > 2  \nInches >= 0";
