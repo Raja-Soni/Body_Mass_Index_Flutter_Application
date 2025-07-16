@@ -40,7 +40,7 @@ class SplashScreenState extends State<SplashScreen> {
       body: AnimatedContainer(
         height: double.infinity,
         width: double.infinity,
-        duration: Duration(seconds: 1),
+        duration: Duration(milliseconds: 800),
         color: bgColor,
         child: Center(
           child: Column(

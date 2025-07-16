@@ -77,7 +77,7 @@ class MyHomePageState extends State<MyHomePage> {
     return SafeArea(
       child: Scaffold(
         appBar: AppBar(
-          backgroundColor: Colors.indigoAccent,
+          backgroundColor: Colors.indigo.shade800,
           title: Row(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
