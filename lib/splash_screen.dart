@@ -1,5 +1,6 @@
 import 'package:bmiapp/main.dart';
 import 'package:flutter/material.dart';
+import 'package:page_transition/page_transition.dart';
 
 class SplashScreen extends StatefulWidget {
   const SplashScreen({super.key});
@@ -29,7 +30,11 @@ class SplashScreenState extends State<SplashScreen> {
     Future.delayed(Duration(seconds: 3), () {
       Navigator.pushReplacement(
         context,
-        MaterialPageRoute(builder: (context) => MyHomePage()),
+        PageTransition(
+          child: MyHomePage(),
+          type: PageTransitionType.fade,
+          duration: Duration(seconds: 1),
+        ),
       );
     });
   }
