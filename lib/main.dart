@@ -556,7 +556,7 @@ class MyHomePageState extends State<MyHomePage> {
                             Container(
                               decoration: bmiResult.isNotEmpty
                                   ? BoxDecoration(
-                                      color: cautionBGColor,
+                                      color: Colors.indigo.shade800,
                                       borderRadius: BorderRadius.all(
                                         Radius.circular(20),
                                       ),
