@@ -64,10 +64,9 @@ class MyHomePageState extends State<MyHomePage> {
 
   bool showLogo = false;
   void validationAnimation() {
-    bgColor = Colors.yellowAccent;
+    bgColor = Colors.indigo.shade500;
+    cautionBGColor = Colors.indigo.shade500;
     chngColor = Colors.black;
-    imageIndex = 0;
-    cautionBGColor = Colors.yellowAccent;
     bmiResult = "";
     imageIndex = 0;
     setState(() {});
