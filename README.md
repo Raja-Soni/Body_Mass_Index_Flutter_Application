@@ -1,7 +1,5 @@
 # Body_Mass_Index_Flutter_Application
 
-https://github.com/user-attachments/assets/4c3fc2fd-9c38-490d-804f-421f8fcc162f
-
 Built a Flutter-based mobile app in Android Studio to calculate Body Mass Index (BMI) from user inputs (weight in kg, height in feet and inches), displaying results with categories like Underweight, Healthy, Overweight, or Obese, accompanied by relevant images.
 
 Created a reusable CustomTextField widget with customizable styling (colors, borders, icons) to ensure consistent numeric input fields across the app.
