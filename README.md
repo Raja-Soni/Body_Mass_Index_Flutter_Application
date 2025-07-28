@@ -1,7 +1,5 @@
 # Body_Mass_Index_Flutter_Application
 
-https://github.com/user-attachments/assets/3f56d7e0-e74b-4a1e-a940-034f5a52749c
-
 1) **First problem Solution after downloading the zip file:**
     Download ZipFile from Code button on the Master webpage. Extract the downloded zip file where ever you want to. Now, Open Android Studio and click on open project or open and select the folder that you have extracted.
     
