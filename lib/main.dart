@@ -221,7 +221,6 @@ class MyHomePageState extends State<MyHomePage> {
                         ),
                       ),
                       SizedBox(height: 25),
-                      SizedBox.shrink(),
                       Form(
                         key: formKey,
                         child: Column(
